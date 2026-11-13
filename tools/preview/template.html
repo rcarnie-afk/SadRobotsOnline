@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sad Robots Sprite Review 01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<style>
+/* layout: one workbench panel (robot left, part bins right), then reference rows below */
+:root{
+  color-scheme: dark;
+  --bg:#191815; --panel:#24221d; --panel-2:#2e2b24; --line:#4a4334;
+  --ink:#e8dcc0; --dim:#a39a82; --amber:#ffb84a; --green:#8fe3a0; --copper:#c98b45; --paper:#efe9da;
+  --display:'Press Start 2P', ui-monospace, monospace;
+  --body:'VT323', ui-monospace, 'Courier New', monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:21px;line-height:1.3;padding:20px 16px 60px}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(0,0,0,.14) 0 1px,transparent 1px 3px)}
+main{max-width:1120px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance}
+h1{font-size:20px;color:var(--amber);line-height:1.5}
+h2{font-size:13px;color:var(--green);line-height:1.6}
+h3{font-size:10px;color:var(--copper);line-height:1.6}
+p{margin:0;max-width:65ch}
+.dim{color:var(--dim)}
+header{display:flex;flex-direction:column;gap:10px}
+.panel{background:var(--panel);border:2px solid var(--line);box-shadow:0 0 0 2px #0e0d0b, inset 0 0 0 2px #1d1b17;padding:16px;display:flex;flex-direction:column;gap:14px}
+canvas{image-rendering:pixelated;display:block}
+.bench{display:grid;grid-template-columns:minmax(260px,340px) 1fr;gap:20px}
+@media (max-width:760px){.bench{grid-template-columns:1fr}}
+.stage{display:flex;flex-direction:column;gap:12px;align-items:center}
+.stage .floor{background:#3a342c;border:2px solid var(--line);padding:8px;width:100%;display:flex;justify-content:center}
+#big{width:256px;height:256px;max-width:100%}
+.dirs{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.four{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;width:100%}
+.four div{background:#3a342c;border:2px solid var(--line);display:flex;flex-direction:column;align-items:center;padding:4px 0;font-size:16px;color:var(--dim)}
+.four canvas{width:64px;height:64px}
+button{font-family:var(--body);font-size:19px;color:var(--ink);background:var(--panel-2);border:2px solid var(--line);padding:3px 10px;cursor:pointer}
+button:hover{border-color:var(--copper)}
+button:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+button[aria-pressed="true"]{border-color:var(--amber);color:var(--amber);background:#3a2f1c}
+.bins{display:flex;flex-direction:column;gap:12px;min-width:0}
+.bin{display:flex;flex-direction:column;gap:6px}
+.row{display:flex;gap:6px;flex-wrap:wrap}
+.pick{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 6px;font-size:16px;width:92px;line-height:1.05}
+.pick canvas{width:72px;height:72px}
+.swatch{width:18px;height:18px;display:inline-block;border:2px solid #0e0d0b;vertical-align:-3px;margin-right:6px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media (max-width:560px){.cards{grid-template-columns:repeat(2,1fr)}}
+.card{background:var(--paper);border:2px solid var(--line);padding:4px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.card canvas{max-width:100%;max-height:170px;width:auto;height:auto;margin:0 auto;image-rendering:auto}
+.card span{color:#3a342c;font-size:16px;line-height:1.05}
+.partgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.part{background:var(--panel-2);border:2px solid var(--line);padding:8px;display:grid;grid-template-columns:96px 1fr;gap:10px;align-items:start}
+.part .src{background:var(--paper);padding:3px}
+.part .src{display:flex;justify-content:center}
+.part .src canvas{max-width:100%;max-height:120px;width:auto;height:auto;image-rendering:auto}
+.part .views{display:flex;gap:2px;background:#3a342c;padding:2px;width:max-content}
+.part .views canvas{width:48px;height:48px}
+.part .meta{display:flex;flex-direction:column;gap:4px;min-width:0;font-size:17px;line-height:1.1}
+.lib{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.lib figure{margin:0;background:var(--panel-2);border:2px solid var(--line);padding:5px;display:flex;flex-direction:column;gap:4px}
+.lib img{width:100%;height:auto;display:block}
+.lib figcaption{font-size:16px;line-height:1.1}
+.lib figcaption b{color:var(--amber);font-weight:400}
+ul{margin:0;padding-left:22px;max-width:70ch}
+li{margin:2px 0}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>Sad Robots Online: sprite review 01</h1>
+  <p>Twenty robot parts, each redrawn as 32-pixel art from one of your drawings. Mix them below and watch the result walk. Your drawing for each chosen part is shown beside it so you can judge how close it is.</p>
+  <p class="dim">These pixel sprites are stand-ins made from your sketches. Every one is on the replacement log for your hand-drawn version.</p>
+</header>
+
+<section class="panel" aria-label="Robot workbench">
+  <h2>Workbench</h2>
+  <div class="bench">
+    <div class="stage">
+      <div class="floor"><canvas id="big" width="256" height="256" aria-label="Assembled robot"></canvas></div>
+      <div class="dirs" id="dirs"></div>
+      <div class="four" id="four"></div>
+      <div class="dirs"><button id="play" aria-pressed="true">Walking</button></div>
+    </div>
+    <div class="bins">
+      <div class="bin"><h3>Rebuilt from one drawing</h3><div class="row" id="presets"></div></div>
+      <div class="bin"><h3>Head</h3><div class="row" id="bin-head"></div></div>
+      <div class="bin"><h3>Torso</h3><div class="row" id="bin-torso"></div></div>
+      <div class="bin"><h3>Arms</h3><div class="row" id="bin-arms"></div></div>
+      <div class="bin"><h3>Legs</h3><div class="row" id="bin-legs"></div></div>
+      <div class="bin"><h3>Paint for the unpainted ink parts</h3><div class="row" id="paints"></div></div>
+      <div class="bin"><h3>Your drawings for these four parts</h3><div class="cards" id="cards"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>Every part beside its source</h2>
+  <p class="dim">Left: the piece of your drawing it came from. Right: front, side and back.</p>
+  <div class="partgrid" id="partgrid"></div>
+</section>
+
+<section class="panel">
+  <h2>Your drawings in the source library</h2>
+  <p class="dim">The cleanest shot of each drawing, with the photo lighting evened out. The first seven are used in the parts above. The rest are queued, and each says what it is planned for.</p>
+  <div class="lib" id="lib"></div>
+</section>
+
+<section class="panel">
+  <h2>Left out of the library</h2>
+  <ul>
+    <li>Repeat and in-progress shots of drawings already in the library.</li>
+    <li>The fifteen robots at the top of panel 1, which look like other artists' work.</li>
+    <li>The glossy coloured restyles in panels 4 to 6, which look AI-generated.</li>
+    <li>Photos of people and places, and screenshots of posts.</li>
+  </ul>
+  <p class="dim">Tell me if any of these should come back in.</p>
+</section>
+</main>
+
+<script>
+const M = /*MANIFEST*/;
+const SHEETS = /*SHEETS*/;
+const SOURCES = /*SOURCES*/;
+const C = M.cell, ROWS = M.rows, CYCLE = M.walkCycle;
+const byId = {}; for (const s in M.slots) for (const p of M.slots[s]) { p.slot = s; byId[p.id] = p; }
+const img = {}, srcImg = {};
+let state = { head: 'head_worker', torso: 'torso_worker', arms: 'arm_fists', legs: 'legs_boots', dir: 0, paint: 'bone', walking: !matchMedia('(prefers-reduced-motion: reduce)').matches };
+let tick = 0;
+
+function load(src) { return new Promise(r => { const i = new Image(); i.onload = () => r(i); i.src = src; }); }
+function hex(h) { return [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)]; }
+
+// Assemble one frame: the same layer order and offsets the game will use.
+const scratch = document.createElement('canvas'); scratch.width = scratch.height = C;
+const sx = scratch.getContext('2d', { willReadFrequently: true });
+function compose(combo, row, f, paint) {
+  const bob = byId[combo.legs].bob[f], [adx, adyF, adyS] = byId[combo.torso].arm;
+  const d = ROWS[row];
+  sx.clearRect(0, 0, C, C);
+  const put = (id, col, dx, dy) => sx.drawImage(img[id], col * C, row * C, C, C, dx, dy, C, C);
+  if (d === 'down' || d === 'up') {
+    put(combo.legs, f, 0, 0); put(combo.arms, f, adx, adyF + bob); put(combo.arms, 3 + f, -adx, adyF + bob);
+    put(combo.torso, f, 0, bob); put(combo.head, f, 0, bob);
+  } else {
+    put(combo.arms, 3 + f, 0, adyS + bob); put(combo.legs, f, 0, 0);
+    put(combo.torso, f, 0, bob); put(combo.head, f, 0, bob); put(combo.arms, f, 0, adyS + bob);
+  }
+  if (paint && paint !== 'bone') {
+    const key = M.paint.key.map(hex), to = M.paint.options[paint].map(hex);
+    const id = sx.getImageData(0, 0, C, C), a = id.data;
+    for (let i = 0; i < a.length; i += 4) for (let k = 0; k < 4; k++)
+      if (a[i] === key[k][0] && a[i + 1] === key[k][1] && a[i + 2] === key[k][2]) { a[i] = to[k][0]; a[i + 1] = to[k][1]; a[i + 2] = to[k][2]; break; }
+    sx.putImageData(id, 0, 0);
+  }
+  return scratch;
+}
+function blit(cv, combo, row, f, paint) {
+  const x = cv.getContext('2d'); x.imageSmoothingEnabled = false;
+  x.clearRect(0, 0, cv.width, cv.height);
+  x.fillStyle = 'rgba(0,0,0,.28)';
+  const s = cv.width / C; x.beginPath(); x.ellipse(cv.width / 2, 30.5 * s, 9 * s, 1.6 * s, 0, 0, 7); x.fill();
+  x.drawImage(compose(combo, row, f, paint), 0, 0, cv.width, cv.height);
+}
+// Close-up of one part: a 24px window of its cell, drawn at a whole-number scale.
+const WIN = 24, WIN_Y = { head: 0, torso: 5, arms: 8, legs: 8 };
+function closeup(p, row, px) {
+  const cv = document.createElement('canvas'); cv.width = cv.height = px;
+  const x = cv.getContext('2d'); x.imageSmoothingEnabled = false;
+  const y = row * C + WIN_Y[p.slot];
+  if (p.slot === 'arms' && ROWS[row] !== 'left') x.drawImage(img[p.id], 4 * C + 4, y, WIN, WIN, 0, 0, px, px);
+  x.drawImage(img[p.id], C + 4, y, WIN, WIN, 0, 0, px, px);
+  return cv;
+}
+function thumb(p) { return closeup(p, 0, 72); }
+function srcCard(p, w) {
+  const [x0, y0, x1, y1] = p.sourceBox, cv = document.createElement('canvas');
+  const k = w / (x1 - x0); cv.width = w; cv.height = Math.round((y1 - y0) * k);
+  cv.getContext('2d').drawImage(srcImg[p.source], x0, y0, x1 - x0, y1 - y0, 0, 0, cv.width, cv.height);
+  return cv;
+}
+function el(tag, props, kids) { const e = Object.assign(document.createElement(tag), props || {}); (kids || []).forEach(k => e.append(k)); return e; }
+
+const fourCv = [];
+function frame() { return state.walking ? CYCLE[tick % CYCLE.length] : 1; }
+function draw() {
+  blit(document.getElementById('big'), state, state.dir, frame(), state.paint);
+  fourCv.forEach((cv, r) => blit(cv, state, r, frame(), state.paint));
+}
+function refreshPressed() {
+  document.querySelectorAll('[data-slot]').forEach(b => b.setAttribute('aria-pressed', String(state[b.dataset.slot] === b.dataset.id)));
+  document.querySelectorAll('[data-dir]').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.dir === state.dir)));
+  document.querySelectorAll('[data-paint]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.paint === state.paint)));
+  const cards = document.getElementById('cards'); cards.replaceChildren();
+  for (const s of ['head', 'torso', 'arms', 'legs']) { const p = byId[state[s]]; cards.append(el('div', { className: 'card' }, [srcCard(p, 220), el('span', { textContent: p.name })])); }
+  draw();
+}
+
+async function boot() {
+  await Promise.all(Object.keys(SHEETS).map(async k => { img[k] = await load(SHEETS[k]); }));
+  await Promise.all(SOURCES.map(async s => { srcImg[s.id] = await load(s.data); }));
+  for (const s of ['head', 'torso', 'arms', 'legs']) {
+    const bin = document.getElementById('bin-' + s);
+    for (const p of M.slots[s]) {
+      const b = el('button', { className: 'pick' }, [thumb(p), el('span', { textContent: p.name })]);
+      b.dataset.slot = s; b.dataset.id = p.id; b.onclick = () => { state[s] = p.id; refreshPressed(); }; bin.append(b);
+    }
+  }
+  const pr = document.getElementById('presets');
+  for (const c of M.presets) { const b = el('button', { textContent: c.name }); b.onclick = () => { Object.assign(state, { head: c.head, torso: c.torso, arms: c.arms, legs: c.legs }); refreshPressed(); }; pr.append(b); }
+  const names = ['Front', 'Left', 'Right', 'Back'], dirs = document.getElementById('dirs'), four = document.getElementById('four');
+  names.forEach((n, r) => {
+    const b = el('button', { textContent: n }); b.dataset.dir = r; b.onclick = () => { state.dir = r; refreshPressed(); }; dirs.append(b);
+    const cv = el('canvas', { width: 64, height: 64 }); fourCv.push(cv); four.append(el('div', {}, [cv, n]));
+  });
+  const paints = document.getElementById('paints');
+  for (const k of ['bone', 'steel', 'copper', 'teal', 'rust', 'yellow', 'brown']) {
+    const sw = el('span', { className: 'swatch' }); sw.style.background = (k === 'bone' ? M.paint.key : M.paint.options[k])[2];
+    const b = el('button', {}, [sw, k]); b.dataset.paint = k; b.onclick = () => { state.paint = k; refreshPressed(); }; paints.append(b);
+  }
+  const play = document.getElementById('play');
+  const setPlay = () => { play.setAttribute('aria-pressed', String(state.walking)); play.textContent = state.walking ? 'Walking' : 'Standing'; };
+  play.onclick = () => { state.walking = !state.walking; setPlay(); draw(); }; setPlay();
+  addEventListener('keydown', e => { const k = { ArrowDown: 0, ArrowLeft: 1, ArrowRight: 2, ArrowUp: 3 }[e.key]; if (k !== undefined) { state.dir = k; refreshPressed(); e.preventDefault(); } });
+
+  const grid = document.getElementById('partgrid');
+  for (const s of ['head', 'torso', 'arms', 'legs']) for (const p of M.slots[s]) {
+    const views = el('div', { className: 'views' });
+    for (const r of [0, 1, 3]) views.append(closeup(p, r, 48));
+    const src = SOURCES.find(q => q.id === p.source);
+    grid.append(el('div', { className: 'part' }, [el('div', { className: 'src' }, [srcCard(p, 180)]),
+      el('div', { className: 'meta' }, [el('h3', { textContent: p.name }), views, el('span', { className: 'dim', textContent: s + ' · from ' + src.title })])]));
+  }
+  const lib = document.getElementById('lib');
+  for (const s of SOURCES) lib.append(el('figure', {}, [el('img', { src: s.data, alt: s.title, loading: 'lazy' }), el('figcaption', {}, [el('b', { textContent: s.title }), el('br'), s.usedFor])]));
+  refreshPressed();
+  setInterval(() => { if (state.walking) { tick++; draw(); } }, 150);
+}
+boot();
+</script>
+</body>
+</html>
