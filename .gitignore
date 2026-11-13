@@ -1,0 +1,7 @@
+# Rob's original drawings and the panel screenshots stay out of this public repo.
+art/source/*
+!art/source/README.md
+__pycache__/
+node_modules/
+dist/
+.DS_Store
