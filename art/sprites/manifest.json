@@ -1,0 +1,445 @@
+{
+ "cell": 32,
+ "rows": [
+  "down",
+  "left",
+  "right",
+  "up"
+ ],
+ "walkCycle": [
+  0,
+  1,
+  2,
+  1
+ ],
+ "slots": {
+  "head": [
+   {
+    "id": "head_worker",
+    "name": "Worker cap",
+    "sheet": "parts/head_worker.png",
+    "source": "p3_02",
+    "sourceBox": [
+     108,
+     50,
+     155,
+     105
+    ],
+    "status": "pixel redraw from Rob's drawing; awaiting hand-drawn replacement"
+   },
+   {
+    "id": "head_dome",
+    "name": "Dome and visor",
+    "sheet": "parts/head_dome.png",
+    "source": "p3_10",
+    "sourceBox": [
+     100,
+     40,
+     150,
+     105
+    ],
+    "status": "pixel redraw from Rob's drawing; awaiting hand-drawn replacement"
+   },
+   {
+    "id": "head_dish",
+    "name": "Dish helm",
+    "sheet": "parts/head_dish.png",
+    "source": "p4_14",
+    "sourceBox": [
+     55,
+     30,
+     150,
+     140
+    ],
+    "status": "pixel redraw from Rob's drawing; awaiting hand-drawn replacement"
+   },
+   {
+    "id": "head_goggle",
+    "name": "Goggle bulb",
+    "sheet": "parts/head_goggle.png",
+    "source": "p5_02",
+    "sourceBox": [
+     90,
+     5,
+     160,
+     80
+    ],
+    "status": "pixel redraw from Rob's drawing; awaiting hand-drawn replacement"
+   },
+   {
+    "id": "head_sleep",
+    "name": "Sleep-mode helmet",
+    "sheet": "parts/head_sleep.png",
+    "source": "p6_08",
+    "sourceBox": [
+     80,
+     20,
+     135,
+     95
+    ],
+    "status": "pixel redraw from Rob's drawing; awaiting hand-drawn replacement"
+   },
+   {
+    "id": "head_gopik",
+    "name": "Go-Pik cap",
+    "sheet": "parts/head_gopik.png",
+    "source": "p2_23",
+    "sourceBox": [
+     80,
+     50,
+     150,
+     115
+    ],
+    "status": "pixel redraw from Rob's drawing; awaiting hand-drawn replacement"
+   }
+  ],
+  "torso": [
+   {
+    "id": "torso_worker",
+    "name": "Pauldron chest",
+    "sheet": "parts/torso_worker.png",
+    "source": "p3_02",
+    "sourceBox": [
+     60,
+     55,
+     200,
+     200
+    ],
+    "status": "pixel redraw from Rob's drawing; awaiting hand-drawn replacement",
+    "arm": [
+     0,
+     2,
+     3
+    ]
+   },
+   {
+    "id": "torso_kneeler",
+    "name": "Barrel chest",
+    "sheet": "parts/torso_kneeler.png",
+    "source": "p3_10",
+    "sourceBox": [
+     75,
+     90,
+     175,
+     185
+    ],
+    "status": "pixel redraw from Rob's drawing; awaiting hand-drawn replacement",
+    "arm": [
+     0,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "torso_gopik",
+    "name": "Go-Pik body",
+    "sheet": "parts/torso_gopik.png",
+    "source": "p2_23",
+    "sourceBox": [
+     45,
+     100,
+     165,
+     185
+    ],
+    "status": "pixel redraw from Rob's drawing; awaiting hand-drawn replacement",
+    "arm": [
+     0,
+     0,
+     1
+    ]
+   },
+   {
+    "id": "torso_yellow",
+    "name": "Tunic and backpack",
+    "sheet": "parts/torso_yellow.png",
+    "source": "p5_02",
+    "sourceBox": [
+     75,
+     25,
+     200,
+     165
+    ],
+    "status": "pixel redraw from Rob's drawing; awaiting hand-drawn replacement",
+    "arm": [
+     0,
+     1,
+     1
+    ]
+   },
+   {
+    "id": "torso_sleep",
+    "name": "Slim frame",
+    "sheet": "parts/torso_sleep.png",
+    "source": "p6_08",
+    "sourceBox": [
+     70,
+     85,
+     150,
+     160
+    ],
+    "status": "pixel redraw from Rob's drawing; awaiting hand-drawn replacement",
+    "arm": [
+     1,
+     0,
+     0
+    ]
+   }
+  ],
+  "arms": [
+   {
+    "id": "arm_fists",
+    "name": "Heavy fists",
+    "sheet": "parts/arm_fists.png",
+    "source": "p3_02",
+    "sourceBox": [
+     15,
+     125,
+     110,
+     200
+    ],
+    "status": "pixel redraw from Rob's drawing; awaiting hand-drawn replacement"
+   },
+   {
+    "id": "arm_hose",
+    "name": "Hose and claw",
+    "sheet": "parts/arm_hose.png",
+    "source": "p5_02",
+    "sourceBox": [
+     30,
+     85,
+     105,
+     150
+    ],
+    "status": "pixel redraw from Rob's drawing; awaiting hand-drawn replacement"
+   },
+   {
+    "id": "arm_gopik",
+    "name": "Go-Pik mitts",
+    "sheet": "parts/arm_gopik.png",
+    "source": "p2_23",
+    "sourceBox": [
+     140,
+     105,
+     185,
+     225
+    ],
+    "status": "pixel redraw from Rob's drawing; awaiting hand-drawn replacement"
+   },
+   {
+    "id": "arm_gauntlet",
+    "name": "Teal gauntlets",
+    "sheet": "parts/arm_gauntlet.png",
+    "source": "p6_08",
+    "sourceBox": [
+     145,
+     95,
+     200,
+     185
+    ],
+    "status": "pixel redraw from Rob's drawing; awaiting hand-drawn replacement"
+   }
+  ],
+  "legs": [
+   {
+    "id": "legs_boots",
+    "name": "Big boots",
+    "sheet": "parts/legs_boots.png",
+    "source": "p3_02",
+    "sourceBox": [
+     65,
+     185,
+     230,
+     280
+    ],
+    "status": "pixel redraw from Rob's drawing; awaiting hand-drawn replacement",
+    "bob": [
+     1,
+     0,
+     1
+    ]
+   },
+   {
+    "id": "legs_treads",
+    "name": "Go-Pik treads",
+    "sheet": "parts/legs_treads.png",
+    "source": "p2_23",
+    "sourceBox": [
+     15,
+     170,
+     170,
+     255
+    ],
+    "status": "pixel redraw from Rob's drawing; awaiting hand-drawn replacement",
+    "bob": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "id": "legs_wheel",
+    "name": "Single wheel",
+    "sheet": "parts/legs_wheel.png",
+    "source": "p3_22",
+    "sourceBox": [
+     0,
+     140,
+     70,
+     210
+    ],
+    "status": "pixel redraw from Rob's drawing; awaiting hand-drawn replacement",
+    "bob": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "id": "legs_fins",
+    "name": "Finned boots",
+    "sheet": "parts/legs_fins.png",
+    "source": "p6_08",
+    "sourceBox": [
+     55,
+     150,
+     175,
+     290
+    ],
+    "status": "pixel redraw from Rob's drawing; awaiting hand-drawn replacement",
+    "bob": [
+     1,
+     0,
+     1
+    ]
+   },
+   {
+    "id": "legs_claws",
+    "name": "Claw feet",
+    "sheet": "parts/legs_claws.png",
+    "source": "p4_14",
+    "sourceBox": [
+     55,
+     185,
+     150,
+     290
+    ],
+    "status": "pixel redraw from Rob's drawing; awaiting hand-drawn replacement",
+    "bob": [
+     1,
+     0,
+     1
+    ]
+   }
+  ]
+ },
+ "presets": [
+  {
+   "name": "The Worker",
+   "src": "p3_02",
+   "head": "head_worker",
+   "torso": "torso_worker",
+   "arms": "arm_fists",
+   "legs": "legs_boots"
+  },
+  {
+   "name": "Go-Pik 1",
+   "src": "p2_23",
+   "head": "head_gopik",
+   "torso": "torso_gopik",
+   "arms": "arm_gopik",
+   "legs": "legs_treads"
+  },
+  {
+   "name": "Butterfly robot",
+   "src": "p3_10",
+   "head": "head_dome",
+   "torso": "torso_kneeler",
+   "arms": "arm_gopik",
+   "legs": "legs_boots"
+  },
+  {
+   "name": "Yellow goggles",
+   "src": "p5_02",
+   "head": "head_goggle",
+   "torso": "torso_yellow",
+   "arms": "arm_hose",
+   "legs": "legs_claws"
+  },
+  {
+   "name": "Sleep mode",
+   "src": "p6_08",
+   "head": "head_sleep",
+   "torso": "torso_sleep",
+   "arms": "arm_gauntlet",
+   "legs": "legs_fins"
+  },
+  {
+   "name": "Dish helm",
+   "src": "p4_14",
+   "head": "head_dish",
+   "torso": "torso_kneeler",
+   "arms": "arm_fists",
+   "legs": "legs_claws"
+  },
+  {
+   "name": "Wheel rider",
+   "src": "p3_22",
+   "head": "head_dome",
+   "torso": "torso_gopik",
+   "arms": "arm_gopik",
+   "legs": "legs_wheel"
+  }
+ ],
+ "paint": {
+  "key": [
+   "#23262b",
+   "#8a939c",
+   "#cfd4d8",
+   "#f4f5f3"
+  ],
+  "options": {
+   "bone": [
+    "#23262b",
+    "#8a939c",
+    "#cfd4d8",
+    "#f4f5f3"
+   ],
+   "steel": [
+    "#1f2228",
+    "#5b6470",
+    "#8c97a3",
+    "#c2cad1"
+   ],
+   "yellow": [
+    "#3a2c10",
+    "#c08a1a",
+    "#f0c425",
+    "#ffe873"
+   ],
+   "teal": [
+    "#123b3a",
+    "#1f7a70",
+    "#35b5a0",
+    "#8fe3cf"
+   ],
+   "brown": [
+    "#2e1a12",
+    "#6e4230",
+    "#9a6247",
+    "#c08a6a"
+   ],
+   "rust": [
+    "#3b1210",
+    "#8f2f22",
+    "#c8492f",
+    "#e8805e"
+   ],
+   "copper": [
+    "#3a2413",
+    "#8a5a2b",
+    "#c98b45",
+    "#eab676"
+   ]
+  }
+ }
+}
