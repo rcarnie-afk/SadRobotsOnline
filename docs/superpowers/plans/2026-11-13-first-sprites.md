@@ -70,3 +70,19 @@
 ### Task 5: Replacement log
 
 - [x] Sheet "Sad Robots Sprite Replacement Log": 72 rows covering the 20 parts, queued robots, animations (turns, hits, jumps, slides, dashes), enemies, tiles, props, items, interface and effects, each with a hand-drawn status.
+
+---
+
+# Early Playable Preview (added 2026-11-14)
+
+Rob approved the sprite step and asked for an early MVP preview. This covers design build-order steps 1 to 3 in a first, single-player form. Sign-in, Firebase, the quest chain, artifacts, the boss dungeon and online presence are not in it.
+
+**Architecture:** Phaser 4.2.1 + TypeScript + Vite. One `WorldScene` restarts for each zone (Tinker Town, or a freshly generated Solar Wastelands per trip). Rules live in pure modules under `src/systems` with unit tests. The HUD, dialogue, title, workbench and guest gate are page elements laid over the canvas. Sound is generated in the browser.
+
+- [x] Rules: part stats, levels, charge in sun / shade / storm / town, loot, save repair. Tests in `tests/systems.test.ts`.
+- [x] Maps: Tinker Town and a seeded wasteland; tests prove every gate, salvage pile, shrine and townsperson is reachable for many seeds.
+- [x] Combat: aimed swing, bolt (costs charge), dash, three enemy kinds, knockback, double hits, drops.
+- [x] Loop: solar points and levels, batteries, four oils, salvage, sun shrines, dust storms, shutdown and tow home with cargo loss.
+- [x] Town: five of Rob's robots plus wandering Go-Piks, workbench, the yellow robot's gift, the guide's intro.
+- [x] Guest gate shown at level 2; the preview lets players continue.
+- [x] Verify: `npm test`, `tsc`, and `tools/playtest.py` (title → build → town → gate → fight → level 2 → storm → tow → workbench → reload) with zero console errors, with and without Rob's drawings.
