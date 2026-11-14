@@ -20,6 +20,8 @@ Status: early playable preview. Build a robot, walk Tinker Town, fight in the So
 | `tools/sprites/` | The scripts that draw, build and check the sheets |
 | `tools/preview/` | Builds the self-contained sprite review page |
 | `docs/superpowers/plans/` | Build plans |
+| `CLAUDE.md` | Rules and conventions for AI coding agents working here |
+| `.claude/skills/` | Phaser's official agent skills (`tools/sync-phaser-skills.sh` refreshes them) |
 
 ## The sprites are stand-ins
 
