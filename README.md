@@ -54,3 +54,13 @@ Needs Python 3 with Pillow; `sources.py` also needs NumPy and SciPy; `playtest.p
 Rob's drawings appear in the game as dialogue portraits and title art only when
 `art/source/` has been filled locally. Without them the game falls back to the
 pixel sprites, so builds from this public repository work as they are.
+
+## Deploying
+
+The game is hosted on Firebase Hosting in the `sadrobotsonline` project
+(`firebase.json`, `.firebaserc`).
+
+- By hand, from a machine signed in to Firebase: `npm run build && npx firebase-tools deploy --only hosting`
+- Automatically: `.github/workflows/ci.yml` builds and tests every pull request and
+  push, and deploys `main` once the repository has a
+  `FIREBASE_SERVICE_ACCOUNT_SADROBOTSONLINE` secret.
